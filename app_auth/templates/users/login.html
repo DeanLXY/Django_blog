@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block subtitle %}
+<div class="container">
+    <a class="navbar-brand" href="/">
+        登录
+    </a>
+</div>
+{% endblock subtitle%}
+
+
+{% block content %}
+<link href="http://www.gbtags.com/gb/networks/uploads/76bd0870-eff6-4bfd-91c9-f1aa2d2d3122/bootstrap-login-forms/form-1/assets/css/form-elements.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript">
+    </script>
+    <div class="container">
+        <form action="." class="input-group" method="post">
+            {% if form.errors %}
+			{% include "users/partials/errors.html" %}
+		{% endif %}
+		{% csrf_token %}
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 form-box">
+                    {% for field in form %}
+                    <div "="" class="form-bottom login-form">
+                        <div class="form-group">
+                            {% include "users/partials/field.html" %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="button-wrapper submit">
+                <input class="btn btn-danger" style="width: 280px" type="submit" value="{% trans 'Log in' %}"/>
+            </div>
+            <input name="next" type="hidden" value="{{ next }}"/>
+            <p>
+                <a href="{% url 'users_password_reset' %}">
+                    {% trans "Forgot password" %}
+                </a>
+            </p>
+            <p>
+                <a href="{% url 'users_register' %}">
+                    {% trans "Register" %}
+                </a>
+            </p>
+        </form>
+    </div>
+    {% endblock %}
+</link>
