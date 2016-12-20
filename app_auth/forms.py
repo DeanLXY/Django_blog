@@ -8,7 +8,7 @@ from .conf import settings
 from .fields import HoneyPotField, PasswordField, UsersEmailField
 class MyAuthenticationForm(AuthenticationForm):
     password = forms.CharField(
-        label=_("Password222222"),
+        # label=_("Password222222"),
         strip=False,
         widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':"密码" }),
     )
@@ -16,6 +16,10 @@ class MyAuthenticationForm(AuthenticationForm):
         max_length=254,
         widget=forms.TextInput(attrs={'autofocus': '','class':'form-control','placeholder':"邮箱/Email"}),
     )
+    # emial = forms.CharField(
+    #     max_length=254,
+    #     widget=forms.TextInput(attrs={'autofocus': '','class':'form-control','placeholder':"邮箱/Email"}),
+    # )
 
 
 class UserCreationForm(forms.ModelForm):
