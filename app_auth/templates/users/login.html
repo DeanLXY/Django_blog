@@ -21,9 +21,11 @@
     <div class="login-content">
 
         <form action="." method="post" role="form" id="form_login">
+         <div class="input-group">
             {% if form.errors %}
 			{% include "users/partials/errors.html" %}
 		{% endif %}
+           </div>
 		{% csrf_token %}
 
 

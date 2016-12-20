@@ -87,6 +87,7 @@
 }
 .login-page .login-form .form-group .input-group.validate-has-error {
   border-color: #ec5956;
+  font-style: #fff 30;
   border-color: rgba(236, 89, 86, 0.5);
 }
 .login-page .login-form .form-group .input-group.validate-has-error .error {

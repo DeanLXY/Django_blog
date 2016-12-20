@@ -8,18 +8,23 @@ from .conf import settings
 from .fields import HoneyPotField, PasswordField, UsersEmailField
 class MyAuthenticationForm(AuthenticationForm):
     password = forms.CharField(
-        # label=_("Password222222"),
+        label=_(u"密码"),
         strip=False,
         widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':"密码" }),
     )
     username = forms.CharField(
+        label=_(u"邮箱"),
         max_length=254,
         widget=forms.TextInput(attrs={'autofocus': '','class':'form-control','placeholder':"邮箱/Email"}),
     )
-    # emial = forms.CharField(
-    #     max_length=254,
-    #     widget=forms.TextInput(attrs={'autofocus': '','class':'form-control','placeholder':"邮箱/Email"}),
-    # )
+    error_messages = {
+        'invalid_login': _(
+            u"请输入正确的 %(username)s 和密码",
+             # u"fields may be case-sensitive.",
+        ),
+        'inactive': _("This account is inactive."),
+    }
+
 
 
 class UserCreationForm(forms.ModelForm):

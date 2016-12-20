@@ -1,7 +1,8 @@
 {% if form.errors and form.non_field_errors %}
-	<div class="form-errors">
+	<div class="validate-has-error error">
 		<ul>
-			{{ form.non_field_errors|unordered_list }}
+
+			<font color="white">{{ form.non_field_errors|unordered_list }}</font>
 		</ul>
 	</div>
 {% endif %}
