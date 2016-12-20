@@ -11,41 +11,46 @@
 
 
 {% block content %}
-<link href="http://www.gbtags.com/gb/networks/uploads/76bd0870-eff6-4bfd-91c9-f1aa2d2d3122/bootstrap-login-forms/form-1/assets/css/form-elements.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript">
-    </script>
-    <div class="container">
-        <form action="." class="input-group" method="post">
+
+ {% block link-css%}
+ <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+ <link rel='stylesheet' href='/static/css/jquery-ui.css'>
+ <link rel="stylesheet" href="/static/css/style.css" media="screen" type="text/css" />
+ {%endblock%}
+
+    <div class="login-content">
+
+        <form action="." method="post" role="form" id="form_login">
             {% if form.errors %}
 			{% include "users/partials/errors.html" %}
 		{% endif %}
 		{% csrf_token %}
-            <div class="row">
-                <div class="col-sm-6 col-sm-offset-3 form-box">
+
+
                     {% for field in form %}
-                    <div "="" class="form-bottom login-form">
+                    {{field.label}}
                         <div class="form-group">
                             {% include "users/partials/field.html" %}
                         </div>
-                    </div>
+
                     {% endfor %}
-                </div>
-            </div>
-            <div class="button-wrapper submit">
-                <input class="btn btn-danger" style="width: 280px" type="submit" value="{% trans 'Log in' %}"/>
+
+            <div class="form-group">
+
+                <button class="btn btn-primary btn-block btn-login"  type="submit" value="{% trans 'Log in' %}">{% trans '登录' %}<i class="fa fa-sign-in"></i></button>
             </div>
             <input name="next" type="hidden" value="{{ next }}"/>
             <p>
                 <a href="{% url 'users_password_reset' %}">
-                    {% trans "Forgot password" %}
+                    {% trans "忘记密码" %}
                 </a>
             </p>
             <p>
                 <a href="{% url 'users_register' %}">
-                    {% trans "Register" %}
+                    {% trans "注册新用户" %}
                 </a>
             </p>
         </form>
     </div>
+
     {% endblock %}
-</link>

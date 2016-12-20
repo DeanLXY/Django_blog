@@ -1,10 +1,21 @@
+# coding:utf-8
 from django import forms
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import ReadOnlyPasswordHashField
+from django.contrib.auth.forms import ReadOnlyPasswordHashField,AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
 
 from .conf import settings
 from .fields import HoneyPotField, PasswordField, UsersEmailField
+class MyAuthenticationForm(AuthenticationForm):
+    password = forms.CharField(
+        label=_("Password222222"),
+        strip=False,
+        widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':"密码" }),
+    )
+    username = forms.CharField(
+        max_length=254,
+        widget=forms.TextInput(attrs={'autofocus': '','class':'form-control','placeholder':"邮箱/Email"}),
+    )
 
 
 class UserCreationForm(forms.ModelForm):
@@ -14,7 +25,7 @@ class UserCreationForm(forms.ModelForm):
         'password_mismatch': _('The two password fields didn\'t match.'),
     }
 
-    email = UsersEmailField(label=_('Email Address222'), max_length=255)
+    email = UsersEmailField(label=_('Email Address'), max_length=255)
     password1 = PasswordField(label=_('Password'))
     password2 = PasswordField(
         label=_('Password Confirmation'),
@@ -22,7 +33,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ('email',)
+        fields = ('email','password1',)
 
     def clean_email(self):
 
